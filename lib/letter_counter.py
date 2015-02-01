@@ -27,7 +27,9 @@ class LetterCounter:
         return False
 
     def append(self, letter):
-        l = Letter(letter)
-        self.letters.append(l)
+        # append if letter is not in control
+        if self.is_counting(letter) == False:
+            l = Letter(letter)
+            self.letters.append(l)
     def increment(self, letter):
         pass
