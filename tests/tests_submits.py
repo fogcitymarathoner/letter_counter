@@ -14,7 +14,7 @@ class SubmitTest(unittest.TestCase):
         r = requests.get('https://fogtest.com/letter_counter/?q=fred', verify=False)
 
         doc = bs(r.text)
-        self.assertEqual('fred', doc.find('input', {'id': 'q'}).get('value'))
+        self.assertEqual('fred', doc.find('textarea', {'id': 'q'}).get('value'))
 
     def test_get_submit_carriagereturn(self):
         """
@@ -24,7 +24,7 @@ class SubmitTest(unittest.TestCase):
         r = requests.get('https://fogtest.com/letter_counter/?q=fr%0d:ed', verify=False)
 
         doc = bs(r.text)
-        self.assertEqual('fred', doc.find('input', {'id': 'q'}).get('value'))
+        self.assertEqual('fr\r:ed', doc.find('textarea', {'id': 'q'}).get('value'))
 
     def test_get_submit_null(self):
         """
@@ -34,7 +34,7 @@ class SubmitTest(unittest.TestCase):
         r = requests.get('https://fogtest.com/letter_counter/?q=', verify=False)
 
         doc = bs(r.text)
-        self.assertEqual('fred', doc.find('input', {'id': 'q'}).get('value'))
+        self.assertEqual('', doc.find('textarea', {'id': 'q'}).get('value'))
 
 
     def test_post_submit(self):
@@ -47,16 +47,22 @@ class SubmitTest(unittest.TestCase):
         }
 
         r = requests.post('https://fogtest.com/letter_counter/', data=data, verify=False)
-        print r.text
+        
         doc = bs(r.text)
 
         td_qstrs = doc.find_all('td', {'class': 'qstr'})
-        print len(td_qstrs)
-        print td_qstrs[0]
-        print td_qstrs[0].text
+
         self.assertEqual('\'f\'', td_qstrs[0].text)
+        self.assertEqual('\'r\'', td_qstrs[1].text)
+        self.assertEqual('\'e\'', td_qstrs[2].text)
+        self.assertEqual('\'d\'', td_qstrs[3].text)
 
 
+        td_counts = doc.find_all('td', {'class': 'count'})
+        self.assertEqual('1', td_counts[0].text)
+        self.assertEqual('1', td_counts[1].text)
+        self.assertEqual('1', td_counts[2].text)
+        self.assertEqual('1', td_counts[3].text)
     def xtest_post_submit_null(self):
         """
         test_post_submit_null - make sure intended POST request returns right result with null input
