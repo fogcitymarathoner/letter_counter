@@ -15,9 +15,9 @@ class Letter:
         self.count = 1
 
 class LetterCounter:
-    letters = []
     def __init__(self, letter):
         letter = Letter(letter)
+        self.letters = []
         self.letters.append(letter)
 
     def is_counting(self, letter):
@@ -27,6 +27,7 @@ class LetterCounter:
         return False
 
     def append(self, letter):
-        pass
+        l = Letter(letter)
+        self.letters.append(l)
     def increment(self, letter):
         pass
