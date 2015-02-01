@@ -17,7 +17,9 @@ class Letter:
 class LetterCounter:
     letters = []
     def __init__(self, letter):
-        pass
+        letter = Letter(letter)
+        self.letters.append(letter)
+
     def is_counting(self, letter):
         pass
     def append(self, letter):
