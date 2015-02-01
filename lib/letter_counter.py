@@ -1,4 +1,5 @@
 __author__ = 'marc'
+import urllib
 """
 LetterCounter Class - Tracks a list of Letter Classes
  members
@@ -13,6 +14,8 @@ class Letter:
         self.count = 1
     def increment(self):
         self.count += 1
+    def urlencode(self):
+        return urllib.quote(self.letter)
 class LetterCounter:
     def __init__(self, letter):
         # initate with first letter of string

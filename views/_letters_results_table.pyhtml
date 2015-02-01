@@ -2,10 +2,11 @@
 <?py if len(letters) > 0: ?>
 <table>
     <th>Letter</th>
+    <th>Url Encoded</th>
     <th>Count</th>
 
     <?py for l in letters: ?>
-        <tr><td>'${ l.letter }'</td><td>${ l.count }</td></tr>
+        <tr><td>'${ l.letter }'</td><td>#{ l.urlencode() }</td><td>${ l.count }</td></tr>
     <?py #endfor ?>
 <?py #endif ?>
 </table>
