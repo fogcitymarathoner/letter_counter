@@ -9,7 +9,7 @@ class Root(object):
     def index(self, q=None):
         engine = tenjin.Engine(path=['views'], layout='_layout.pyhtml')
         ## context data
-        print 'q |%s|'%q
+
         if q is None or q == '':
             context = {
                 'title': 'Letter Counter',

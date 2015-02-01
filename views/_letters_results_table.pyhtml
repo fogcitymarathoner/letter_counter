@@ -6,7 +6,7 @@
     <th>Count</th>
 
     <?py for l in letters: ?>
-        <tr><td>'${ l.letter }'</td><td>#{ l.urlencode() }</td><td>${ l.count }</td></tr>
+        <tr><td class="qstr">'${ l.letter }'</td><td class="code">#{ l.urlencode() }</td><td class="count">${ l.count }</td></tr>
     <?py #endfor ?>
 <?py #endif ?>
 </table>

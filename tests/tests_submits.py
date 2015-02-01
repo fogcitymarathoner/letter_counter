@@ -47,12 +47,34 @@ class SubmitTest(unittest.TestCase):
         }
 
         r = requests.post('https://fogtest.com/letter_counter/', data=data, verify=False)
+        print r.text
+        doc = bs(r.text)
 
+        td_qstrs = doc.find_all('td', {'class': 'qstr'})
+        print len(td_qstrs)
+        print td_qstrs[0]
+        print td_qstrs[0].text
+        self.assertEqual('\'f\'', td_qstrs[0].text)
+
+
+    def xtest_post_submit_null(self):
+        """
+        test_post_submit_null - make sure intended POST request returns right result with null input
+        :return:
+        """
+        data = {
+            'q': None,
+        }
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'
+        }
+        r = requests.post('https://fogtest.com/letter_counter/', data=data, verify=False, headers=headers)
+        print r.text
         doc = bs(r.text)
         self.assertEqual('fred', doc.find('input', {'id': 'q'}).get('value'))
 
 
-    def test_post_submit_null(self):
+    def xtest_post_submit_carriagereturn(self):
         """
         test_post_submit_null - make sure intended POST request returns right result with null input
         :return:
@@ -63,20 +85,5 @@ class SubmitTest(unittest.TestCase):
 
         r = requests.post('https://fogtest.com/letter_counter/', data=data, verify=False)
         print r.text
-        doc = bs(r.text)
-        self.assertEqual('fred', doc.find('input', {'id': 'q'}).get('value'))
-
-
-    def test_post_submit_carriagereturn(self):
-        """
-        test_post_submit_null - make sure intended POST request returns right result with null input
-        :return:
-        """
-        data = {
-            'q': None,
-        }
-
-        r = requests.post('https://fogtest.com/letter_counter/', data=data, verify=False)
-
         doc = bs(r.text)
         self.assertEqual('fr%0d:ed', doc.find('input', {'id': 'q'}).get('value'))
