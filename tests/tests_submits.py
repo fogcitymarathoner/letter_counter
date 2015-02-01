@@ -62,7 +62,7 @@ class SubmitTest(unittest.TestCase):
         }
 
         r = requests.post('https://fogtest.com/letter_counter/', data=data, verify=False)
-
+        print r.text
         doc = bs(r.text)
         self.assertEqual('fred', doc.find('input', {'id': 'q'}).get('value'))
 
