@@ -1,4 +1,4 @@
 <form action="/letter_counter/" method="POST">
-    <input id="q" name="q" value="${ q }"></input>
+    <textarea id="q" name="q" value="${ q }"></textarea>
     <input type="submit" value="Count the Letters">
 </form>
