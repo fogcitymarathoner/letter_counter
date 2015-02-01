@@ -21,7 +21,11 @@ class LetterCounter:
         self.letters.append(letter)
 
     def is_counting(self, letter):
-        pass
+        for l in self.letters:
+            if l.letter == letter:
+                return True
+        return False
+
     def append(self, letter):
         pass
     def increment(self, letter):
