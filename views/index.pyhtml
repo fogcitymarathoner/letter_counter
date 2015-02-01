@@ -1,1 +1,3 @@
-Hello World!
+<div id="form" class="letter-string"><?py include('_letter_string_form.pyhtml', q=q) ?></div>
+
+<div id="results" class="letters"><?py include('_letters_results_table.pyhtml', letters=letters) ?></div>

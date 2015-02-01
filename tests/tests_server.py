@@ -15,4 +15,3 @@ class ServerTest(unittest.TestCase):
 
         doc = bs(r.text)
         self.assertEqual('Letter Counter', doc.find('title').text)
-        

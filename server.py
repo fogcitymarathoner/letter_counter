@@ -3,20 +3,29 @@ import cherrypy
 import tenjin
 import json
 from tenjin.helpers import *
-
+from lib.functions import letter_counts
 class Root(object):
     @cherrypy.expose
-    def index(self, dist=None):
-        if dist is None:
+    def index(self, q=None):
 
-            engine = tenjin.Engine(path=['views'], layout='_layout.pyhtml')
-            ## context data
+        engine = tenjin.Engine(path=['views'], layout='_layout.pyhtml')
+        ## context data
+        if q is None:
             context = {
                 'title': 'Letter Counter',
+                'q': q,
+                'letters': None
             }
-            ## render template with context data
-            html = engine.render('index.pyhtml', context)
-            return html
+        else:
+
+            context = {
+                'title': 'Letter Counter',
+                'q': q,
+                'letters': letter_counts(q)
+            }
+        ## render template with context data
+        html = engine.render('index.pyhtml', context)
+        return html
 
 if __name__ == '__main__':
     cherrypy.config.update({
