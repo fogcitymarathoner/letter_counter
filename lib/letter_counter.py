@@ -8,17 +8,17 @@ LetterCounter Class - Tracks a list of Letter Classes
    increment() - increment count on active letter
 """
 class Letter:
-    letter = ''
-    count = 0
     def __init__(self, letter):
         self.letter = letter
         self.count = 1
-
+    def increment(self):
+        self.count += 1
 class LetterCounter:
     def __init__(self, letter):
-        letter = Letter(letter)
+        # initate with first letter of string
+        l = Letter(letter)
         self.letters = []
-        self.letters.append(letter)
+        self.letters.append(l)
 
     def is_counting(self, letter):
         for l in self.letters:
@@ -32,4 +32,7 @@ class LetterCounter:
             l = Letter(letter)
             self.letters.append(l)
     def increment(self, letter):
-        pass
+        for l in self.letters:
+            if l.letter == letter:
+                l.increment()
+
