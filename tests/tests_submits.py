@@ -47,7 +47,7 @@ class SubmitTest(unittest.TestCase):
         }
 
         r = requests.post('https://fogtest.com/letter_counter/', data=data, verify=False)
-        
+
         doc = bs(r.text)
 
         td_qstrs = doc.find_all('td', {'class': 'qstr'})
