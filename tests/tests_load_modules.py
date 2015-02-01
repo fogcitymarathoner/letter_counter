@@ -12,6 +12,7 @@ class LetterModuleImportTest(unittest.TestCase):
         module_list = [
             'lib',
             'lib.letter_counter',
+            'lib.functions',
             ]
         for mod in module_list:
             try:
