@@ -13,6 +13,7 @@ class LetterModuleImportTest(unittest.TestCase):
             'lib',
             'lib.letter_counter',
             'lib.functions',
+            'server'
             ]
         for mod in module_list:
             try:
