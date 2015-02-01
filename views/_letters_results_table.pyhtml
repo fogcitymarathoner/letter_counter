@@ -1,1 +1,11 @@
-${letters}
+
+<?py if len(letters) > 0: ?>
+<table>
+    <th>Letter</th>
+    <th>Count</th>
+
+    <?py for l in letters: ?>
+        <tr><td>'${ l.letter }'</td><td>${ l.count }</td></tr>
+    <?py #endfor ?>
+<?py #endif ?>
+</table>

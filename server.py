@@ -7,14 +7,13 @@ from lib.functions import letter_counts
 class Root(object):
     @cherrypy.expose
     def index(self, q=None):
-
         engine = tenjin.Engine(path=['views'], layout='_layout.pyhtml')
         ## context data
         if q is None:
             context = {
                 'title': 'Letter Counter',
                 'q': q,
-                'letters': None
+                'letters': []
             }
         else:
 

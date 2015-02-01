@@ -1,1 +1,4 @@
-<input id="q" name="q" value="${ q }"></input>
+<form action="/letter_counter/" method="POST">
+    <input id="q" name="q" value="${ q }"></input>
+    <input type="submit" value="Count the Letters">
+</form>
