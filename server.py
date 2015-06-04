@@ -29,7 +29,7 @@ class Root(object):
 
 if __name__ == '__main__':
     cherrypy.config.update({
-        'server.socket_port': 8084,
+        'server.socket_port': 8107,
         'tools.proxy.on': True,
         'tools.proxy.base': 'http://fogtest.com/letter_counter',
         'tools.encode.encoding': "utf-8",
